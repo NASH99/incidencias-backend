@@ -8,6 +8,7 @@ use App\Http\Controllers\TrabajoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\AuthenticationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,3 +30,4 @@ Route::resource('usuarios',UsuarioController::class);
 Route::resource('detalles',DetalleController::class);
 Route::post('incidencias',[IncidenciaController::class,'store']);
 Route::get('incidencias',[IncidenciaController::class,'index']);
+Route::post('login',[AuthenticationController::class,'login']);
