@@ -14,7 +14,7 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        return response()->json(Departamento::orderBy('idDepartamento')->get());
+        return response()->json(Departamento::with("trabajos")->orderBy('idDepartamento')->get());
     }
 
     /**
