@@ -10,5 +10,5 @@ class Detalle extends Model
     use HasFactory;
     protected $table = 'incidenciasdetalle';
     protected $primaryKey = 'idIncidenciaDetalle';
-    protected $fillable = ['idIncidencia','fecha','idTecnico','comentario'];
+    protected $fillable = ['idIncidencia','fecha','comentario'];
 }

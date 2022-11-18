@@ -24,6 +24,16 @@ class IncidenciaController extends Controller
 
         return response()->json($incidencias);
     }
+
+    public function obtenerMisIncidenciasCreadas($idUsuario){
+        $incidencias=Incidencia::where('idSolicitante',$idUsuario)->with('trabajo')->orderBy('fecha','desc')->get();
+        return response()->json($incidencias);
+    }
+
+    public function obtenerIncidenciasNoAsignadas(){
+        $incidencias=Incidencia::where('idTecnico',null)->with('trabajo')->orderBy('fecha','asc')->get();
+        return response()->json($incidencias);
+    }
 }
 
 //crear show e index
