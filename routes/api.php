@@ -32,4 +32,4 @@ Route::post('incidencias',[IncidenciaController::class,'store']);
 Route::get('incidencias',[IncidenciaController::class,'index']);
 Route::post('login',[AuthenticationController::class,'login']);
 Route::get('incidencias/mis-incidencias-creadas/{idUsuario}',[IncidenciaController::class,'obtenerMisIncidenciasCreadas']);
-Route::get('incidencias/incidencias-no-asignadas',[IncidenciaController::class,'obtenerIncidenciasNoAsignadas']);
+Route::get('incidencias/incidencias-no-asignadas/{idDepartamento}',[IncidenciaController::class,'obtenerIncidenciasNoAsignadas']);

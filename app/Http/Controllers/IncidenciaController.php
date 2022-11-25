@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Incidencia;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 use Illuminate\Http\Request;
 
@@ -30,9 +31,17 @@ class IncidenciaController extends Controller
         return response()->json($incidencias);
     }
 
-    public function obtenerIncidenciasNoAsignadas(){
+    public function obtenerIncidenciasNoAsignadas($idDepartamento){
         $incidencias=Incidencia::where('idTecnico',null)->with('trabajo')->orderBy('fecha','asc')->get();
-        return response()->json($incidencias);
+        Log::debug($incidencias);
+        $response=[];
+        foreach($incidencias as $incidencia){
+            if($incidencia->trabajo['idDepartamento']==$idDepartamento){
+                array_push($response,$incidencia);
+            }
+        }
+
+        return response()->json($response);
     }
 }
 
