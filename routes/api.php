@@ -33,3 +33,5 @@ Route::get('incidencias',[IncidenciaController::class,'index']);
 Route::post('login',[AuthenticationController::class,'login']);
 Route::get('incidencias/mis-incidencias-creadas/{idUsuario}',[IncidenciaController::class,'obtenerMisIncidenciasCreadas']);
 Route::get('incidencias/incidencias-no-asignadas/{idDepartamento}',[IncidenciaController::class,'obtenerIncidenciasNoAsignadas']);
+Route::get('usuarios/obtener-tecnicos-por-departamento/{idDepartamento}', [UsuarioController::class, 'obtenerTecnicosPorDepartamento']);
+Route::put('incidencias/asignar-tecnico', [IncidenciaController::class, 'asignarTecnico']);

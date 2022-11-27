@@ -75,4 +75,9 @@ class UsuarioController extends Controller
         $usuario->delete();
         return response()->json($usuario);
     }
+
+    public function obtenerTecnicosPorDepartamento($idDepartamento) {
+        $tecnicos = Usuario::where('idCargo', 2)->where('idDepartamento', $idDepartamento)->get();
+        return response()->json($tecnicos);
+    }
 }

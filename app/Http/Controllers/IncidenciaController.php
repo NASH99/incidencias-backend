@@ -43,6 +43,13 @@ class IncidenciaController extends Controller
 
         return response()->json($response);
     }
+
+    public function asignarTecnico(Request $request) {
+        $incidencia = Incidencia::findOrFail($request->idIncidencia);
+        $incidencia->idTecnico = $request->idTecnico;
+        $incidencia->save();
+        return response()->json($incidencia);
+    }
 }
 
 //crear show e index
