@@ -48,6 +48,7 @@ class IncidenciaController extends Controller
     public function asignarTecnico(Request $request) {
         $incidencia = Incidencia::findOrFail($request->idIncidencia);
         $incidencia->idTecnico = $request->idTecnico;
+        $incidencia->estado = 2;
         $incidencia->save();
         return response()->json($incidencia);
     }
@@ -71,6 +72,31 @@ class IncidenciaController extends Controller
 
     public function show($idIncidencia) {
         $incidencia = Incidencia::with(['detalles', 'trabajo.departamento'])->findOrFail($idIncidencia);
+        return response()->json($incidencia);
+    }
+
+    public function cambiarEstado(Request $request) {
+        $incidencia = Incidencia::findOrFail($request->idIncidencia);
+        $incidencia->estado = $request->estado;
+        $incidencia->save();
+        return response()->json($incidencia);
+    }
+
+    public function obtenerIncidenciasDeDepartamentoOtros() {
+        $incidencias=Incidencia::with('trabajo')->get();
+        $response = [];
+        foreach($incidencias as $incidencia) {
+            if ($incidencia->trabajo['idDepartamento'] === 7) {
+                array_push($response, $incidencia);
+            }
+        }
+        return response()->json($response);
+    }
+
+    public function asignarTrabajoAIncidencia(Request $request) {
+        $incidencia = Incidencia::findOrFail($request->idIncidencia);
+        $incidencia->idTrabajo = $request->idTrabajo;
+        $incidencia->save();
         return response()->json($incidencia);
     }
 }

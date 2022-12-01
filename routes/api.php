@@ -39,4 +39,6 @@ Route::get('incidencias/obtener-incidencias-asignadas-tecnico/{idTecnico}', [Inc
 Route::put('incidencias/cerrar-incidencia/{idIncidencia}', [IncidenciaController::class, 'cerrarIncidencia']);
 Route::post('incidencias/agregar-detalle', [IncidenciaController::class, 'agregarDetalle']);
 Route::get('incidencias/show/{idIncidencia}', [IncidenciaController::class, 'show']);
-
+Route::post('incidencias/cambiar-estado', [IncidenciaController::class, 'cambiarEstado']);
+Route::get('incidencias/obtener-incidencias-departamento-otros', [IncidenciaController::class, 'obtenerIncidenciasDeDepartamentoOtros']);
+Route::put('incidencias/asignar-trabajo-incidencia', [IncidenciaController::class, 'asignarTrabajoAIncidencia']);
