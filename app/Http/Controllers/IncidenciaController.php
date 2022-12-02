@@ -33,7 +33,7 @@ class IncidenciaController extends Controller
     }
 
     public function obtenerIncidenciasNoAsignadas($idDepartamento){
-        $incidencias=Incidencia::where('idTecnico',null)->with('trabajo')->orderBy('fecha','asc')->get();
+        $incidencias=Incidencia::where('idTecnico',null)->with('trabajo.departamento')->orderBy('fecha','asc')->get();
         Log::debug($incidencias);
         $response=[];
         foreach($incidencias as $incidencia){
@@ -83,7 +83,7 @@ class IncidenciaController extends Controller
     }
 
     public function obtenerIncidenciasDeDepartamentoOtros() {
-        $incidencias=Incidencia::with('trabajo')->get();
+        $incidencias=Incidencia::with('trabajo.departamento')->get();
         $response = [];
         foreach($incidencias as $incidencia) {
             if ($incidencia->trabajo['idDepartamento'] === 7) {
