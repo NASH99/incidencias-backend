@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Trabajo;
 use App\Models\Detalle;
+use App\Models\Usuario;
 
 class Incidencia extends Model
 {
@@ -20,5 +21,13 @@ class Incidencia extends Model
 
     public function detalles() {
         return $this->hasMany(Detalle::class, 'idIncidencia');
+    }
+
+    public function tecnico() {
+        return $this->belongsTo(Usuario::class, 'idTecnico');
+    }
+
+    public function usuario() {
+        return $this->belongsTo(Usuario::class, 'idSolicitante');
     }
 }

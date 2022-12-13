@@ -28,7 +28,7 @@ class IncidenciaController extends Controller
     }
 
     public function obtenerMisIncidenciasCreadas($idUsuario){
-        $incidencias=Incidencia::where('idSolicitante',$idUsuario)->with('trabajo')->orderBy('fecha','desc')->get();
+        $incidencias=Incidencia::where('idSolicitante',$idUsuario)->with(['trabajo', 'detalles', 'tecnico'])->orderBy('fecha','desc')->get();
         return response()->json($incidencias);
     }
 
@@ -83,7 +83,7 @@ class IncidenciaController extends Controller
     }
 
     public function obtenerIncidenciasDeDepartamentoOtros() {
-        $incidencias=Incidencia::with('trabajo.departamento')->get();
+        $incidencias=Incidencia::with(['trabajo.departamento', 'usuario.departamento'])->get();
         $response = [];
         foreach($incidencias as $incidencia) {
             if ($incidencia->trabajo['idDepartamento'] === 7) {
